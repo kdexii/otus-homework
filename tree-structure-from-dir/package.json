@@ -1,0 +1,15 @@
+{
+  "name": "tree-structure-from-dir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tree-dir.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/tree-dir.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dree": "^4.8.1"
+  }
+}
