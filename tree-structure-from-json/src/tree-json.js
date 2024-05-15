@@ -1,26 +1,27 @@
-const exampleData = 
-  { 
-    name: 1,
-    items: [
-      {
-        name: 2,
-        items: [{ name: 3 }, { name: 4 }],
-      },
-      {
-        name: 5,
-        items: [{ name: 6 }],
-      },
-    ],
-  };
-
-function parseToTree(jsonInput) {
-    let strJson = `${jsonInput.name}
-└──${jsonInput.items[0].name}
-│ └──${jsonInput.items[0].items[0].name}
-│ └──${jsonInput.items[0].items[1].name}
-└──${jsonInput.items[1].name}
-└──${jsonInput.items[1].items[0].name}`;
-  return strJson;
+function displayTreeFromJson(node, depth = 0) {
+  console.log(`${"│  ".repeat(depth)}├── ${node.name}`);
+  if (node.items) {
+    node.items.forEach((item) => displayTreeFromJson(item, depth + 1));
+  }
 }
 
-console.log(parseToTree(exampleData));
+const exampleData = {
+  name: 1,
+  items: [
+    {
+      name: 2,
+      items: [{ name: 3 }, { name: 4 }],
+    },
+    {
+      name: 5,
+      items: [{ name: 6 }],
+    },
+    {
+      name: 7,
+      items: [{ name: 8 }],
+    },
+  ],
+};
+
+console.log(exampleData.name);
+exampleData.items.forEach((item) => displayTreeFromJson(item));
