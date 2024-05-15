@@ -5,11 +5,10 @@
   "main": "tree-dir.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/tree-dir.js"
+    "start": "node ./src/tree-dir.js ./ -d 0"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dree": "^4.8.1"
   }
 }
