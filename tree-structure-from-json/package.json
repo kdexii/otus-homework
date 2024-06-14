@@ -1,0 +1,15 @@
+{
+  "name": "tree-structure-from-json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/tree-json.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node ./src/tree-json.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

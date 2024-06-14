@@ -1,0 +1,15 @@
+{
+  "name": "tree-structure-from-dir",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tree-dir.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node ./src/tree-dir.js ./ -d 0"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
