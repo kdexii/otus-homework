@@ -35,6 +35,7 @@ function displayDirectory(directoryPath, prefix, maxDepth, currentDepth) {
     });
 
     console.log(`${prefix}└── ${dirs} directories, ${filesCount} files`);
+
 }
 
 displayTree(directoryPath, depth);
