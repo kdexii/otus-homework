@@ -1,8 +1,7 @@
 const express = require('express');
-const { Course } = require('../models/course'); // Убедитесь, что путь правильный
+const { Course } = require('../models/course');
 const router = express.Router();
 
-// Пример маршрутов для курсов
 router.get('/', async (req, res) => {
     try {
         const courses = await Course.findAll();
@@ -26,4 +25,4 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-module.exports = router; // Убедитесь, что маршрутизатор экспортируется
+module.exports = router;

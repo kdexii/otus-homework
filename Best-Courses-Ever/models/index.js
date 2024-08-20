@@ -1,7 +1,6 @@
-const sequelize = require('../config/database'); // Импортируем sequelize из файла конфигурации
-const User = require('./user'); // Импортируем модель пользователя
+const sequelize = require('../config/database');
+const User = require('./user');
 
-// Экспортируем sequelize и модель пользователя
 module.exports = {
     sequelize,
     User

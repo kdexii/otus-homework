@@ -4,12 +4,10 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 const router = express.Router();
 
-// GET метод для регистрации
 router.get('/register', (req, res) => {
     res.render('register', { title: 'Register' });
 });
 
-// POST метод для регистрации
 router.post('/register', async (req, res) => {
     const { username, email, password } = req.body;
     if (!username || !email || !password) {
@@ -26,12 +24,10 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// GET метод для логина
 router.get('/login', (req, res) => {
     res.render('login', { title: 'Login' });
 });
 
-// POST метод для логина
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     if (!email || !password) {

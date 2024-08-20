@@ -1,6 +1,6 @@
 const { Strategy, ExtractJwt } = require('passport-jwt');
 const dotenv = require('dotenv');
-const { User } = require('../models/user'); // Замените на правильный путь к вашей модели пользователя
+const { User } = require('../models/user');
 
 dotenv.config();
 
