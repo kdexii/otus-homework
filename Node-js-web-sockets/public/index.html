@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaflet WebSocket Example</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([51.505, -0.09], 13);
+    
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+    
+        let markerGroup = L.layerGroup().addTo(map);
+        let polyline;
+    
+        const ws = new WebSocket('ws://localhost:3001');
+    
+        ws.onopen = () => {
+            console.log('WebSocket connection established');
+        };
+    
+        ws.onmessage = event => {
+            const geoJsonData = JSON.parse(event.data);
+    
+            markerGroup.clearLayers();
+            if (polyline) {
+                map.removeLayer(polyline);
+            }
+    
+            const coordinates = geoJsonData.features.map(feature => {
+                return [feature.geometry.coordinates[1], feature.geometry.coordinates[0]];
+            });
+
+            coordinates.forEach(coord => {
+                L.marker(coord).addTo(markerGroup);
+            });
+    
+            polyline = L.polyline(coordinates, {color: 'blue'}).addTo(map);
+    
+            map.fitBounds(polyline.getBounds());
+        };
+    
+        function sendLocation(lat, lng) {
+            const location = {
+                lat: lat,
+                lng: lng
+            };
+            ws.send(JSON.stringify(location));
+        }
+    
+        function updateLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const { latitude, longitude } = position.coords;
+                    sendLocation(latitude, longitude);
+                });
+            } else {
+                alert('Geolocation is not supported by your browser.');
+            }
+        }
+    
+        setInterval(updateLocation, 61000);
+        updateLocation();
+    </script>
+    
+</body>
+</html>
